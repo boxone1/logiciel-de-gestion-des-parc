@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBGPModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TB_ARTICLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Unity" Type="nvarchar" MaxLength="50" />
+    <Property Name="PurchasePrice" Type="float" />
+    <Property Name="SellingPrice" Type="float" />
+    <Property Name="sellingPrice2" Type="float" />
+    <Property Name="Quantity" Type="float" />
+    <Property Name="loading" Type="float" />
+    <Property Name="transport" Type="float" />
+    <Property Name="ExpDate" Type="datetime" />
+    <Property Name="Date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TB_BILL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDSell" Type="int" />
+    <Property Name="IDClient" Type="int" />
+    <Property Name="ClientName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Article" Type="nvarchar" MaxLength="50" />
+    <Property Name="Quantity" Type="float" />
+    <Property Name="Unity" Type="nchar" MaxLength="10" />
+    <Property Name="Price" Type="float" />
+    <Property Name="Discount" Type="float" />
+    <Property Name="TotalPrice" Type="float" />
+    <Property Name="Date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TB_CLIENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Adress" Type="nvarchar(max)" />
+    <Property Name="Debt" Type="float" />
+    <Property Name="Date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TB_PAYMENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Client" Type="int" />
+    <Property Name="Payment" Type="float" />
+    <Property Name="Date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TB_SELL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDClient" Type="int" />
+    <Property Name="ClientName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaymentState" Type="nchar" MaxLength="10" />
+    <Property Name="Payment" Type="float" />
+    <Property Name="Debt" Type="float" />
+    <Property Name="Date" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_TB_BILL_TB_CLIENT">
+    <End Role="TB_CLIENT" Type="Self.TB_CLIENT" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TB_BILL" Type="Self.TB_BILL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_CLIENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TB_BILL">
+        <PropertyRef Name="IDClient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_BILL_TB_SELL">
+    <End Role="TB_SELL" Type="Self.TB_SELL" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TB_BILL" Type="Self.TB_BILL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_SELL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TB_BILL">
+        <PropertyRef Name="IDSell" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_SELL_TB_CLIENT">
+    <End Role="TB_CLIENT" Type="Self.TB_CLIENT" Multiplicity="0..1" />
+    <End Role="TB_SELL" Type="Self.TB_SELL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_CLIENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TB_SELL">
+        <PropertyRef Name="IDClient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBGPModel1StoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_ARTICLE" EntityType="Self.TB_ARTICLE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_BILL" EntityType="Self.TB_BILL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_CLIENT" EntityType="Self.TB_CLIENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_PAYMENT" EntityType="Self.TB_PAYMENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_SELL" EntityType="Self.TB_SELL" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TB_BILL_TB_CLIENT" Association="Self.FK_TB_BILL_TB_CLIENT">
+      <End Role="TB_CLIENT" EntitySet="TB_CLIENT" />
+      <End Role="TB_BILL" EntitySet="TB_BILL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_BILL_TB_SELL" Association="Self.FK_TB_BILL_TB_SELL">
+      <End Role="TB_SELL" EntitySet="TB_SELL" />
+      <End Role="TB_BILL" EntitySet="TB_BILL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_SELL_TB_CLIENT" Association="Self.FK_TB_SELL_TB_CLIENT">
+      <End Role="TB_CLIENT" EntitySet="TB_CLIENT" />
+      <End Role="TB_SELL" EntitySet="TB_SELL" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

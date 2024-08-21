@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBGPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TB_ARTICLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Unity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PurchasePrice" Type="Double" />
+    <Property Name="SellingPrice" Type="Double" />
+    <Property Name="Quantity" Type="Double" />
+    <Property Name="ExpDate" Type="DateTime" Precision="3" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="QuanitityBarre" Type="Double" />
+    <Property Name="SellingPrice2" Type="Double" />
+    <Property Name="Loading" Type="Double" />
+    <Property Name="Transport" Type="Double" />
+    <Property Name="Unload" Type="Double" />
+    <Property Name="Supplier_ID" Type="Int32" />
+    <Property Name="SupplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentState" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Debt" Type="Double" />
+    <Property Name="Payment" Type="Double" />
+  </EntityType>
+  <EntityType Name="TB_BILL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDSell" Type="Int32" />
+    <Property Name="IDClient" Type="Int32" />
+    <Property Name="ClientName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Article" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Quantity" Type="Double" />
+    <Property Name="Unity" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="Discount" Type="Double" />
+    <Property Name="TotalPrice" Type="Double" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TB_CLIENT" Relationship="Self.FK_TB_BILL_TB_CLIENT" FromRole="TB_BILL" ToRole="TB_CLIENT" />
+    <NavigationProperty Name="TB_SELL" Relationship="Self.FK_TB_BILL_TB_SELL" FromRole="TB_BILL" ToRole="TB_SELL" />
+  </EntityType>
+  <EntityType Name="TB_CLIENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Debt" Type="Double" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TB_BILL" Relationship="Self.FK_TB_BILL_TB_CLIENT" FromRole="TB_CLIENT" ToRole="TB_BILL" />
+    <NavigationProperty Name="TB_SELL" Relationship="Self.FK_TB_SELL_TB_CLIENT" FromRole="TB_CLIENT" ToRole="TB_SELL" />
+  </EntityType>
+  <EntityType Name="TB_PAYMENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Client" Type="Int32" />
+    <Property Name="Payment" Type="Double" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TB_SELL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDClient" Type="Int32" />
+    <Property Name="ClientName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentState" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Payment" Type="Double" />
+    <Property Name="Debt" Type="Double" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TB_BILL" Relationship="Self.FK_TB_BILL_TB_SELL" FromRole="TB_SELL" ToRole="TB_BILL" />
+    <NavigationProperty Name="TB_CLIENT" Relationship="Self.FK_TB_SELL_TB_CLIENT" FromRole="TB_SELL" ToRole="TB_CLIENT" />
+  </EntityType>
+  <Association Name="FK_TB_BILL_TB_CLIENT">
+    <End Role="TB_CLIENT" Type="Self.TB_CLIENT" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TB_BILL" Type="Self.TB_BILL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_CLIENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TB_BILL">
+        <PropertyRef Name="IDClient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_BILL_TB_SELL">
+    <End Role="TB_SELL" Type="Self.TB_SELL" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TB_BILL" Type="Self.TB_BILL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_SELL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TB_BILL">
+        <PropertyRef Name="IDSell" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_SELL_TB_CLIENT">
+    <End Role="TB_CLIENT" Type="Self.TB_CLIENT" Multiplicity="0..1" />
+    <End Role="TB_SELL" Type="Self.TB_SELL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_CLIENT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TB_SELL">
+        <PropertyRef Name="IDClient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBGPEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TB_ARTICLE" EntityType="Self.TB_ARTICLE" />
+    <EntitySet Name="TB_BILL" EntityType="Self.TB_BILL" />
+    <EntitySet Name="TB_CLIENT" EntityType="Self.TB_CLIENT" />
+    <EntitySet Name="TB_PAYMENT" EntityType="Self.TB_PAYMENT" />
+    <EntitySet Name="TB_SELL" EntityType="Self.TB_SELL" />
+    <AssociationSet Name="FK_TB_BILL_TB_CLIENT" Association="Self.FK_TB_BILL_TB_CLIENT">
+      <End Role="TB_CLIENT" EntitySet="TB_CLIENT" />
+      <End Role="TB_BILL" EntitySet="TB_BILL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_BILL_TB_SELL" Association="Self.FK_TB_BILL_TB_SELL">
+      <End Role="TB_SELL" EntitySet="TB_SELL" />
+      <End Role="TB_BILL" EntitySet="TB_BILL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_SELL_TB_CLIENT" Association="Self.FK_TB_SELL_TB_CLIENT">
+      <End Role="TB_CLIENT" EntitySet="TB_CLIENT" />
+      <End Role="TB_SELL" EntitySet="TB_SELL" />
+    </AssociationSet>
+    <EntitySet Name="TB_STOCK" EntityType="DBGPModel.TB_STOCK" />
+    <EntitySet Name="TB_SUPPLIER" EntityType="DBGPModel.TB_SUPPLIER" />
+    <EntitySet Name="TB_SUPPLIER_PAYMENTS" EntityType="DBGPModel.TB_SUPPLIER_PAYMENTS" />
+    <AssociationSet Name="FK_TB_SUPPLIER_PAYMENTS_TB_SUPPLIER1" Association="DBGPModel.FK_TB_SUPPLIER_PAYMENTS_TB_SUPPLIER1">
+      <End Role="TB_SUPPLIER" EntitySet="TB_SUPPLIER" />
+      <End Role="TB_SUPPLIER_PAYMENTS" EntitySet="TB_SUPPLIER_PAYMENTS" />
+    </AssociationSet>
+    <EntitySet Name="TB_SUPPLY_BILL" EntityType="DBGPModel.TB_SUPPLY_BILL" />
+    <EntitySet Name="TB_Purchase" EntityType="DBGPModel.TB_Purchase" />
+    <AssociationSet Name="FK_TB_SUPPLY_BILL_TB_Purchase" Association="DBGPModel.FK_TB_SUPPLY_BILL_TB_Purchase">
+      <End Role="TB_Purchase" EntitySet="TB_Purchase" />
+      <End Role="TB_SUPPLY_BILL" EntitySet="TB_SUPPLY_BILL" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="TB_STOCK">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ArticleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Quantity" Type="Double" />
+    <Property Name="Unity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="Price2" Type="Double" />
+    <Property Name="loadingPrice" Type="Double" />
+    <Property Name="QuantityBarre" Type="Double" />
+    <Property Name="BarreInQuintale" Type="Double" />
+    <Property Name="Unity2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TB_SUPPLIER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SupplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Debt" Type="Double" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TB_SUPPLIER_PAYMENTS" Relationship="DBGPModel.FK_TB_SUPPLIER_PAYMENTS_TB_SUPPLIER1" FromRole="TB_SUPPLIER" ToRole="TB_SUPPLIER_PAYMENTS" />
+  </EntityType>
+  <EntityType Name="TB_SUPPLIER_PAYMENTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDSupplier" Type="Int32" />
+    <Property Name="Payment" Type="Double" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TB_SUPPLIER" Relationship="DBGPModel.FK_TB_SUPPLIER_PAYMENTS_TB_SUPPLIER1" FromRole="TB_SUPPLIER_PAYMENTS" ToRole="TB_SUPPLIER" />
+  </EntityType>
+  <Association Name="FK_TB_SUPPLIER_PAYMENTS_TB_SUPPLIER1">
+    <End Type="DBGPModel.TB_SUPPLIER" Role="TB_SUPPLIER" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="DBGPModel.TB_SUPPLIER_PAYMENTS" Role="TB_SUPPLIER_PAYMENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_SUPPLIER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TB_SUPPLIER_PAYMENTS">
+        <PropertyRef Name="IDSupplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TB_SUPPLY_BILL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDPurchase" Type="Int32" />
+    <Property Name="IDSupplier" Type="Int32" />
+    <Property Name="Article" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Quantity" Type="Double" />
+    <Property Name="Unity1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Unity2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Price1" Type="Double" />
+    <Property Name="Price2" Type="Double" />
+    <Property Name="TotalPrice" Type="Double" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="SupplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TB_Purchase" Relationship="DBGPModel.FK_TB_SUPPLY_BILL_TB_Purchase" FromRole="TB_SUPPLY_BILL" ToRole="TB_Purchase" />
+  </EntityType>
+  <EntityType Name="TB_Purchase">
+    <Key>
+      <PropertyRef Name="Date" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="IDSupplier" Type="Int32" />
+    <Property Name="SupplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentState" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Debt" Type="Double" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="TB_SUPPLY_BILL" Relationship="DBGPModel.FK_TB_SUPPLY_BILL_TB_Purchase" FromRole="TB_Purchase" ToRole="TB_SUPPLY_BILL" />
+  </EntityType>
+  <Association Name="FK_TB_SUPPLY_BILL_TB_Purchase">
+    <End Type="DBGPModel.TB_Purchase" Role="TB_Purchase" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="DBGPModel.TB_SUPPLY_BILL" Role="TB_SUPPLY_BILL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Purchase">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TB_SUPPLY_BILL">
+        <PropertyRef Name="IDPurchase" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

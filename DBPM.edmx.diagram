@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5f5657b2cb2f46639cd2dce4c8731c4b" Name="Diagram1">
+        <EntityTypeShape EntityType="DBGPModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGPModel.TB_BILL" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGPModel.TB_CLIENT" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGPModel.TB_PAYMENT" Width="1.5" PointX="4.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGPModel.TB_SELL" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGPModel.TB_STOCK" Width="1.5" PointX="7.875" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGPModel.TB_SUPPLIER" Width="1.5" PointX="10.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBGPModel.TB_SUPPLIER_PAYMENTS" Width="1.5" PointX="13.25" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="DBGPModel.FK_TB_BILL_TB_SELL" ManuallyRouted="false" />
+        <AssociationConnector Association="DBGPModel.FK_TB_SUPPLIER_PAYMENTS_TB_SUPPLIER1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DBGPModel.TB_ARTICLE" Width="1.5" PointX="13.5" PointY="9.75" />
+        <EntityTypeShape EntityType="DBGPModel.TB_PURCHASE" Width="1.5" PointX="10.875" PointY="10.25" />
+        <AssociationConnector Association="DBGPModel.FK_TB_ARTICLE_TB_PURCHASE" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
