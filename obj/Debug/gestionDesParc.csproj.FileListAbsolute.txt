@@ -14,16 +14,13 @@ C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\obj\Debug\gestionDesParc.
 C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\obj\Debug\gestionDesParc.Pages.sell.resources
 C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\bin\Debug\Database.mdf
 C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\bin\Debug\Database_log.ldf
-C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\obj\Debug\gestionDesParc.addPages.clientAdd.resources
 C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\obj\Debug\gestionDesParc.addPages.addClient.resources
 C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\obj\Debug\gestionDesParc.Pages.paymentLog.resources
 C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\obj\Debug\gestionDesParc.addPages.addPayment.resources
-C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\obj\Debug\gestionDesParc.addPages.add_sand.resources
 C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\bin\Debug\EntityFramework.dll
 C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\bin\Debug\EntityFramework.xml
 C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\obj\Debug\gestionDesParc.addPages.tryEntity.resources
 C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\obj\Debug\gestionDesParc.Pages.sellLog.resources
 C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\obj\Debug\gestionDesParc.Pages.FRM_BILL.resources
 C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\bin\Debug\DevExpress.Data.Desktop.v24.1.dll
@@ -47,6 +44,5 @@ C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\bin\Debug\DevExpress.Xtra
 C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\obj\Debug\gestionDesParc.Pages.stockPage.resources
 C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\obj\Debug\gestionDesParc.Pages.dataGridPreview.resources
 C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\obj\Debug\gestionDesParc.Pages.purchasePage.resources
-C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\obj\Debug\gestionDesParc.addPages.addSupplier.resources
 C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\obj\Debug\gestionDesParc.Pages.supplierPage.resources
 C:\Users\PC\source\repos\gestionDesParc\gestionDesParc\obj\Debug\gestionDesParc.Pages.Purchase.resources

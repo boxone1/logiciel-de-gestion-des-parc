@@ -1,22 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Management;
-using gestionDesParc.addPages;
-using gestionDesParc.Pages;
-using gestionDesParc.BL;
-using System.Drawing.Printing;
-using System.Security.Cryptography;
-using System.Drawing.Configuration;
-using System.Data.Entity.Spatial;
 using System.Data.Entity;
 
 

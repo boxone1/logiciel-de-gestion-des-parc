@@ -1,47 +1,25 @@
 ﻿using gestionDesParc.Pages;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using gestionDesParc.Pages;
-using gestionDesParc.addPages;
-using gestionDesParc.DAL;
-using gestionDesParc.BL;
-using System.Runtime.InteropServices;
 
 
 namespace gestionDesParc
 {
     public partial class Main : Form
     {
-        String state;
-        int ID;
+     
         // client vars
-        ClsClient clsClient;
-
-        /// <summary>
-        /// /////////////
-        /// </summary>
+        
         clientPage client = new clientPage();
-        clientAdd addClient;
         sell sellpage;
         Purchase article;
         stockPage stockpage;
         sellLog sellsLog;
         purchasePage purchasepage;
         supplierPage supplierpage;
-        DBGPEntities4 db;
-        TB_BILL Bill;
-        Main main;
         public int id;
 
-
-        Array array;
         public Main()
         {
             InitializeComponent();

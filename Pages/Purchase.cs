@@ -1,15 +1,10 @@
 ﻿
 using gestionDesParc.addPages;
-using gestionDesParc.BL;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.Entity.Validation;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace gestionDesParc.Pages
@@ -17,21 +12,15 @@ namespace gestionDesParc.Pages
     public partial class Purchase : UserControl
     {
 
-        ClsSell clsSell;
 
-        DBGPEntities4 db, context;
-        
-        TB_ARTICLE tbArticle;
+        DBGPEntities4 db;
+       
         TB_STOCK stock;
         TB_SUPPLIER supplier;
-        TB_BILL bill;
-        TB_ARTICLE article;
-        TB_PURCHASE purchase;
 
-        addClient addClient;
-        addSupplier addsupplier;
+        addClient addSupplier;
+        
 
-        double totalprice;
         string state ="add";
         public int IDSupplier=0;
         public int Id;
@@ -39,7 +28,6 @@ namespace gestionDesParc.Pages
         
         public double quantityBarre;
         public double quantityQuintale;
-        int oldQuantity;
        
         public Purchase()
         {
@@ -138,16 +126,7 @@ namespace gestionDesParc.Pages
             }
 
         }
-        private void getTotal()
-        {
-            totalprice = 0;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                totalprice += Convert.ToDouble(row.Cells["purchasePrice"].Value);
-            }
-            txt_total.Text = totalprice.ToString();
-            txt_rest.Text = (Convert.ToDouble(txt_total.Text)-Convert.ToDouble(txt_paidAmount.Text)).ToString();
-        }
+       
         public void articleAutoco()
         {
 
@@ -186,13 +165,7 @@ namespace gestionDesParc.Pages
                     txt_sellingPrice.Text = "0";
                 }
             }
-            catch (Exception ex)
-            {
-                //   txt_price.Text = "0";
-                //txt_article.Text = "####";
-
-
-            }
+            catch{}
 
         }
 
@@ -454,8 +427,8 @@ namespace gestionDesParc.Pages
 
         private void link_addClient_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            addsupplier= new addSupplier();
-            addClient.Show();
+            addSupplier= new addClient();
+            addSupplier.Show();
         }
 
         private void btn_new_Click(object sender, EventArgs e)

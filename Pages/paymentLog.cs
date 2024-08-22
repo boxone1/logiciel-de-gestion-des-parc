@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using gestionDesParc.addPages;
-using gestionDesParc.BL;
-using gestionDesParc;
+using System.Data.Entity;
 
 namespace gestionDesParc.Pages
 {
@@ -22,8 +14,9 @@ namespace gestionDesParc.Pages
         SqlConnection con;
         DataTable dt;
         SqlDataAdapter da;
-        DAL.ClsDAL DAL = new DAL.ClsDAL();
         clientPage clientpage = new clientPage();
+        DBGPEntities4 db;
+        TB_PAYMENT tbPayemnt;
         
         public int id;
 
@@ -86,10 +79,23 @@ namespace gestionDesParc.Pages
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
-            ClsPymentLog clsPaymenet = new ClsPymentLog();
-            id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["ID"].Value);
-            clsPaymenet.deletePayment(id);
+            /* ClsPymentLog clsPaymenet = new ClsPymentLog();
+             id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["ID"].Value);
+             clsPaymenet.deletePayment(id);
+            */
+            deletPayment();
             LoadData();
+        }
+
+        private void deletPayment()
+        {
+            db = new DBGPEntities4();
+            tbPayemnt = db.TB_PAYMENT.Where(x => x.ID_Client == id).FirstOrDefault();
+            if (tbPayemnt != null) {
+                db.Entry(tbPayemnt).State = EntityState.Deleted;
+                db.SaveChanges();
+            }
+
         }
 
       

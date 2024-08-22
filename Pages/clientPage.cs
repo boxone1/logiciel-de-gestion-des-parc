@@ -1,25 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Management;
 using gestionDesParc.addPages;
-using gestionDesParc.Pages;
-using gestionDesParc.BL;
-using System.Drawing.Printing;
-using System.Security.Cryptography;
-using System.Drawing.Configuration;
-using DGVPrinterHelper;
 using System.Data.Entity;
-using System.Net.Sockets;
-using System.Windows.Media.Imaging;
 
 
 namespace gestionDesParc.Pages
@@ -31,10 +16,7 @@ namespace gestionDesParc.Pages
         DataTable dt;
         addClient AddClient;
         public Main main ;
-        ClsClient clsClient;
-        ClsPymentLog log = new ClsPymentLog();
         paymentLog paymentlog;
-        addPayment payments;
         TB_CLIENT tbClient;
         DBGPEntities4 db;
        
@@ -143,6 +125,9 @@ namespace gestionDesParc.Pages
 
         //////////////////
         ///psyments log data loading
+       
+        /*
+        
         private void loadPaymentsLog()
         {
             try
@@ -176,13 +161,43 @@ namespace gestionDesParc.Pages
                 paymentlog.Show();
             }
             catch {}
+        }*/
+        private void loadPaymentsLog()
+        {
+            db = new DBGPEntities4();
+            id= Convert.ToInt32(dataGridView1.CurrentRow.Cells["ID"].Value);
+            DataTable dt = new DataTable();
+            paymentlog = new paymentLog();
+            paymentlog.lbl_id.Text = dataGridView1.CurrentRow.Cells["ID"].Value.ToString();
+            paymentlog.lbl_name.Text = dataGridView1.CurrentRow.Cells["الاسم"].Value.ToString();
+            paymentlog.dataGridView1.Columns[1].HeaderText = "المبلغ";
+            paymentlog.dataGridView1.Columns[2].HeaderText = "التاريخ";
+
+            var payments = db.TB_PAYMENT.Where(x=>x.ID_Client==id).ToArray();
+
+           // dt.Columns.Add("ID");
+            dt.Columns.Add("Payment");
+            dt.Columns.Add("Date");
+
+            foreach (var item in payments)
+            {
+                
+                dt.Rows.Add( item.Payment,item.Date);
+            
+            }
+            paymentlog.dataGridView1.DataSource = dt;
+            paymentlog.Show();
+                
+
+                
+
+
+
         }
 
-        private void btn_search_Click(object sender, EventArgs e)
-        {
-            dataGridPreview dvp = new dataGridPreview();
-            dvp.Show();
-        }
+
+
+      
 
         private void btn_search_Click_1(object sender, EventArgs e)
         {

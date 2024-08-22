@@ -1,24 +1,10 @@
-﻿using DevExpress.Data.Filtering;
-using DevExpress.Data.Filtering.Helpers;
-using DevExpress.Data.Helpers;
-using DevExpress.Drawing.Internal.Fonts;
-using DevExpress.Utils.Behaviors;
-using DevExpress.Utils.Extensions;
-using DevExpress.XtraPrinting.Shape.Native;
-using gestionDesParc.addPages;
-using gestionDesParc.BL;
+﻿using gestionDesParc.addPages;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
-using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace gestionDesParc.Pages
@@ -26,14 +12,10 @@ namespace gestionDesParc.Pages
     public partial class sell : UserControl
     {
 
-        ClsSell clsSell;
-
-        DBGPEntities4 db, context;
+        DBGPEntities4 db;
         TB_ARTICLE tbArticle;
         TB_STOCK stock, article;
         TB_CLIENT client;
-        TB_BILL bill;
-        TB_SELL tbsell;
         addClient addClient;
         double totalprice;
         public string state = "add";
@@ -44,7 +26,6 @@ namespace gestionDesParc.Pages
         public double quantityQuintale;
         double quanitity;
         public int sellId = 0;
-        Array articlesNames;
 
         public sell()
         {

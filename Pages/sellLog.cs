@@ -1,24 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Management;
 using gestionDesParc.addPages;
-using gestionDesParc.Pages;
-using gestionDesParc.BL;
-using System.Drawing.Printing;
-using System.Security.Cryptography;
-using System.Drawing.Configuration;
 using System.Data.Entity;
-using DGVPrinterHelper;
-using System.Windows.Forms.VisualStyles;
 namespace gestionDesParc.Pages
 {
     public partial class sellLog : UserControl
@@ -26,16 +13,10 @@ namespace gestionDesParc.Pages
         SqlConnection con;
         SqlDataAdapter da;
         DataTable dt;
-        addClient client;
         public Main main;
-        ClsClient clsClient;
-        ClsPymentLog log = new ClsPymentLog();
-        paymentLog paymentlog;
-
         TB_SELL tbsell;
         TB_BILL Bill;
         DBGPEntities4 db;
-        Array array;
         int id;
         sell sell;
 
@@ -125,47 +106,6 @@ namespace gestionDesParc.Pages
 
         }
 
-        private void btn_payment_Click(object sender, EventArgs e)
-        {
-
-            // paymentlog = new paymentLog();
-            loadData();
-            // log.loadPayments();
-
-
-
-
-
-
-        }
-
-
-        //////////////////
-        ///psyments log data loading
-        private void loadData()
-        {
-            try
-            {
-                DataTable dt = new DataTable();
-                paymentlog = new paymentLog();
-                paymentlog.lbl_id.Text = dataGridView1.CurrentRow.Cells["ID"].Value.ToString();
-                paymentlog.lbl_name.Text = dataGridView1.CurrentRow.Cells["الاسم"].Value.ToString();
-                log.id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["ID"].Value);
-
-                dt = log.loadPayments();
-                paymentlog.dataGridView1.DataSource = dt;
-
-
-
-
-                paymentlog.dataGridView1.Columns[0].Visible = false;
-                paymentlog.dataGridView1.Columns[1].HeaderText = "المبلغ";
-                paymentlog.dataGridView1.Columns[2].HeaderText = "التاريخ";
-
-                paymentlog.Show();
-            }
-            catch { }
-        }
 
         private void btn_bill_Click(object sender, EventArgs e)
         {

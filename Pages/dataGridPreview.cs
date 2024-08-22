@@ -1,21 +1,14 @@
 ﻿using DGVPrinterHelper;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace gestionDesParc.Pages
 {
     public partial class dataGridPreview : Form
     {
-        clientPage cp;
         SqlConnection con;
         SqlDataAdapter da;
         DataTable dt;
@@ -200,18 +193,7 @@ namespace gestionDesParc.Pages
         }
     
    
-        private void setSubtitles()
-        {
-            String subtitles = "first  one" +
-                "second one" +
-                "third one";
-        }
-
-        
-        private void btn_print_Click(object sender, EventArgs e)
-        {
-            printFunction();
-        }
+      
 
         // print function
         public void printFunction()

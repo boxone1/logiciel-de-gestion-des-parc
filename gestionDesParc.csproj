@@ -90,12 +90,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="addPages\addSupplier.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="addPages\addSupplier.Designer.cs">
-      <DependentUpon>addSupplier.cs</DependentUpon>
-    </Compile>
     <Compile Include="addPages\addClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,28 +102,6 @@
     <Compile Include="addPages\addPayment.Designer.cs">
       <DependentUpon>addPayment.cs</DependentUpon>
     </Compile>
-    <Compile Include="addPages\add_sand.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="addPages\add_sand.Designer.cs">
-      <DependentUpon>add_sand.cs</DependentUpon>
-    </Compile>
-    <Compile Include="addPages\clientAdd.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="addPages\clientAdd.Designer.cs">
-      <DependentUpon>clientAdd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="addPages\tryEntity.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="addPages\tryEntity.Designer.cs">
-      <DependentUpon>tryEntity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BL\ClsClient.cs" />
-    <Compile Include="BL\ClsPymentLog.cs" />
-    <Compile Include="BL\ClsSell.cs" />
-    <Compile Include="DAL\ClsDAL.cs" />
     <Compile Include="DBPM.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -244,23 +216,11 @@
     <Compile Include="TB_SUPPLIER_PAYMENTS.cs">
       <DependentUpon>DBPM.tt</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="addPages\addSupplier.resx">
-      <DependentUpon>addSupplier.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="addPages\addClient.resx">
       <DependentUpon>addClient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="addPages\addPayment.resx">
       <DependentUpon>addPayment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="addPages\add_sand.resx">
-      <DependentUpon>add_sand.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="addPages\clientAdd.resx">
-      <DependentUpon>clientAdd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="addPages\tryEntity.resx">
-      <DependentUpon>tryEntity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
